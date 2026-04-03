@@ -1,7 +1,11 @@
-import type { Scene } from '../types/game'
+import type { GameState, Scene } from '../types/game'
 
-function GameCanvas({ scene }: { scene: Scene }) {
-    return <div>hello</div>
+function GameCanvas({ scene, gameState, setGameState }: { 
+  scene: Scene
+  gameState: GameState
+  setGameState: (state: GameState) => void
+}) {
+    return <img src={scene.background} />
   }
 
   export default GameCanvas
