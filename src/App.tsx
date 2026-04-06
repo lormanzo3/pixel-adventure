@@ -5,9 +5,18 @@ import type { Scene, GameState } from './types/game'
 const scene: Scene = {
   id: "diner",
   background: "/scenes/diner.jpg",
-  hotspots: []
+  hotspots: [{
+    id: "counter",
+    label: "Diner Counter",
+    area: { x: 10, y: 60, width: 30, height: 20 },
+    action: (state) => {
+      return {
+        ...state,
+        inventory: [...state.inventory, "coin"]
+      }
+    }
+  }]
  }
-
 
 function App() {
   const [gameState, setGameState] = useState<GameState>({
