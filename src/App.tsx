@@ -15,6 +15,20 @@ const scene: Scene = {
         inventory: [...state.inventory, "coin"]
       }
     }
+  },
+    {
+    id: "payphone",
+    label: "Payphone",
+    area: { x: 70, y: 50, width: 10, height: 25 },
+    action: (state) => {
+      if (state.inventory.includes("coin")) {
+        return {
+          ...state,
+          flags: { ...state.flags, foundThomasMessage: true }
+        }
+      }
+      return state
+    }
   }]
  }
 
