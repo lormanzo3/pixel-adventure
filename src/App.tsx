@@ -1,3 +1,4 @@
+import { useState } from "react"
 import GameCanvas from "./components/GameCanvas"
 import type { Scene, GameState } from './types/game'
 
@@ -7,15 +8,14 @@ const scene: Scene = {
   hotspots: []
  }
 
-const gameState: GameState = {
-  currentScene: "diner",
-  inventory: [],
-  flags: {}
-}
-
 
 function App() {
-  return <GameCanvas scene={scene} gameState={gameState} setGameState={() => {}} />
+  const [gameState, setGameState] = useState<GameState>({
+    currentScene: "diner",
+    inventory: [],
+    flags: {}
+  })
+  return <GameCanvas scene={scene} gameState={gameState} setGameState={setGameState} />
 }
 
 export default App
