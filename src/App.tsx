@@ -29,17 +29,34 @@ const scene: Scene = {
     id: "payphone",
     label: "Payphone",
     area: { x: 70, y: 50, width: 10, height: 25 },
-    action: (state) => {
-      if (state.inventory.includes("coin")) {
-        return {
-          state: {...state, flags: { ...state.flags, foundThomasMessage: true } },
-          message: "You drop the coin in. A recorded message plays: 'If you're hearing this, something's wrong. Come to the workshop. 3:14 — remember that.'"
-        }
+    action: (state) => {                                                                                                                                                         
+    if (state.inventory.includes("coin")) {
+      return {
+        state: state,
+        message: "The payphone hums...",
+        choices: [
+          {
+            label: "Use coin",
+            action: (state) => {
+              return {
+                state: { ...state, flags: { ...state.flags, foundThomasMessage: true } },
+                message: "/* Thomas's message here */"
+              }
+            }
+          },
+          {
+            label: "Leave",
+            action: (state) => {
+              return {
+                state: state,
+              }
+            }
+          }
+        ]
       }
-      return { state: state, message: "It looks like the payphone needs a coin." }
     }
-  }]
- }
+    return { state: state, message: "The payphone needs a coin." }
+  }}]}
 
 function App() {
   const [gameState, setGameState] = useState<GameState>({
