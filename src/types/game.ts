@@ -4,6 +4,15 @@ export type GameState = {
   flags: Record<string, boolean>
 }
 
+export type Choice = {
+  label: string
+  action: (state: GameState) => {
+    state: GameState
+    message: string
+    choices?: Choice[]
+  }
+}
+
 export type Hotspot = {
   id: string
   label: string
@@ -11,6 +20,7 @@ export type Hotspot = {
   action: (state: GameState) => {
     state: GameState
     message: string
+    choices?: Choice[]
   }
 }
 
@@ -19,3 +29,4 @@ export type Scene = {
   background: string
   hotspots: Hotspot[]
 }
+
